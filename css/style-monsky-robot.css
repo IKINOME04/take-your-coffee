@@ -1,0 +1,158 @@
+
+.robot{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.head,.torso, .left-arm, .right-arm, .left-leg, .right-leg,.robot-button{
+	border: 5px solid #f8f8f8;
+
+}
+
+.head{
+	width: 200px;
+	height: 160px;
+	border-top-left-radius: 120px;
+	border-top-right-radius: 120px;
+	display: flex;
+	align-items: center;
+}
+
+.head:hover{
+	transition: all 1s;
+	width:240px;
+}
+
+.upper-body{
+	margin-top: 5px;
+	display: flex;
+}
+
+.lower-body{
+	margin: 5px 0px 0px 0px;
+	display: flex;
+}
+
+.eyes{
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.left-eye, .right-eye{
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: white;
+}
+
+.left-arm, .right-arm{
+	width: 40px;
+	height: 130px;
+	border-radius: 23px;
+	transition: transform 1s;
+
+	
+}
+
+.left-arm:hover{
+	transform: rotate(20deg) translateX(-20px) ;
+
+}
+.right-arm:hover{
+	transform: rotate(-20deg) translateX(20px) ;
+
+}
+
+.torso{
+	margin: 0px 8px;
+	width: 200px;
+	height: 180px;
+	border-bottom-left-radius: 48px;
+	border-bottom-right-radius: 48px;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.torso:has(.robot-button:hover) + div{
+	transform: translateX(3rem) rotate(-60deg);
+}
+
+.left-arm:has(+.torso > .robot-button:hover){
+	transform: translateX(-3rem) rotate(60deg);
+}
+
+.head:has(+.upper-body > .torso > .robot-button:hover){
+	transition: transform 1s, width 1s;
+	width:240px;
+	transform: translateY(-30px);
+}
+
+.upper-body:has(.torso > .robot-button:hover) +  .lower-body .right-leg{
+	transform: translate(3rem, 1rem) rotate(-380deg);
+}
+.upper-body:has(.torso > .robot-button:hover) +  .lower-body .left-leg{
+	transform: translate(-3rem, 1rem) rotate(380deg);
+}
+
+.left-leg,.right-leg{
+	margin: 0px 18px;
+	width: 45px;
+	height: 80px;
+	border-bottom-right-radius: 23px;
+	border-bottom-left-radius: 23px;
+	transition: all 1s;
+}
+
+.left-leg:hover{
+	transform: rotate(20deg) translatex(-20px);
+}
+
+.right-leg:hover{
+	transform: rotate(-20deg) translatex(20px);
+}
+
+.robot-button{
+	margin-top: 40px;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 40px;
+	transition: all 1s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.robot-button:hover{
+	background-color: #801515;
+	transition: all 1s;
+	height: 4.5rem;
+	width: 4.5rem;
+}
+
+.robot-button img{
+	width: 2.5rem;
+	height: 2.5rem;
+	content: url("../assets/img/coffee-bean.png");
+	animation-name: image-rotate;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: linear;
+
+	.robot-button:hover &{
+		transition: all 1s;
+		height: 3rem;
+		width: 3rem;
+	}
+	
+}
+
+@keyframes image-rotate{
+	0%{ transform: rotate(360deg)}
+
+}
+
